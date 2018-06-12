@@ -67,7 +67,7 @@ if(isset($_POST["proceed"])){
 	if($inpQtype != "any")
 		$url.= '&type='.$inpQtype;	
 	
-	$data = file_get_contents($url); // put the contents of the file into a variable
+	$data = file_get_contents($url, true); // put the contents of the file into a variable
 	$characters = json_decode($data, true); // decode the JSON feed
 	$i = 0;
 	$resArr = [];
@@ -81,37 +81,45 @@ if(isset($_POST["proceed"])){
 			$arr = $value['incorrect_answers'];
 			array_push($arr, $value['correct_answer']);
 			
-			array_push($resArr, $value['correct_answer']);
+			array_push($corrAns, $value['correct_answer']);
+			array_push($quesArr, $value['question']);
 			foreach($arr as $key=>$choiceOptions){
 				print "<input type='radio' name='Ques$i' id='$key' value='$choiceOptions' /> $choiceOptions<br/>";
 			}
 			print "<br/><br/>";
 		}
 	}
-	foreach($resArr as $key)
+	foreach($corrAns as $key)
 		echo '<input type="hidden" name="key[]" value="'. $key. '">';
+	foreach($quesArr as $ques)
+		echo '<input type="hidden" name="ques[]" value="'. $ques. '">';
 		
 	print "<button class='' name='submit' type='submit'>Submit</button></form><body></html>";
 }
 
 if(isset($_POST["submit"])){
 	$key = $_POST["key"];
+	$ques = $_POST["ques"];
 	$answer = [];
 	$retCnt = 0;
 	for($i = 1 ; $i <= 20 ; $i++) { 
 		$postarray = 'Ques'.$i; 
 		array_push($answer, $_POST[$postarray]); 
 	}
-	print_r($answer);
-	print "<br/><br/>";
-	print_r($key);
-	print "<br/><br/>";
+	
+	print "Your score: $retCnt";
+	
+	for($i=0; $i<20; $i++){
+		print ($i+1).$ques[0];
+		print "Your answer: ".$answer[$i];
+		print "&nbsp; &nbsp; Correct answer: ".$key[$i];
+	}
 	
 	foreach($answer as $index=>$value){
 		if($key[$index] == $value)
 			$retCnt += 1;
 	}
-	print "Your score: $retCnt";
+	
 }
 ?>
 
