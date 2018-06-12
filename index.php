@@ -70,7 +70,8 @@ if(isset($_POST["proceed"])){
 	$data = file_get_contents($url, true); // put the contents of the file into a variable
 	$characters = json_decode($data, true); // decode the JSON feed
 	$i = 0;
-	$resArr = [];
+	$quesArr = [];
+	$corrAns = [];
 	
 	print "<html><head></head><body><form action='' method='POST'>";
 	foreach ($characters as $character) {
@@ -80,6 +81,8 @@ if(isset($_POST["proceed"])){
 			print $i.". ".$value['question']."<br/>";
 			$arr = $value['incorrect_answers'];
 			array_push($arr, $value['correct_answer']);
+			
+			shuffle($arr); //This shuffles the choices every time the user takes the test.
 			
 			array_push($corrAns, $value['correct_answer']);
 			array_push($quesArr, $value['question']);
@@ -107,12 +110,12 @@ if(isset($_POST["submit"])){
 		array_push($answer, $_POST[$postarray]); 
 	}
 	
-	print "Your score: $retCnt";
+	print "Your score: $retCnt<br/><br/>";
 	
 	for($i=0; $i<20; $i++){
-		print ($i+1).$ques[0];
+		print ($i+1).".".$ques[$i]." <br/>" ;
 		print "Your answer: ".$answer[$i];
-		print "&nbsp; &nbsp; Correct answer: ".$key[$i];
+		print "&nbsp; &nbsp; Correct answer: ".$key[$i]."<br/><br/>";
 	}
 	
 	foreach($answer as $index=>$value){
