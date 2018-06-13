@@ -1,0 +1,303 @@
+/*IKwizU styles*/
+body {
+	min-width: 1020px;
+	font-family: 'Tajawal', sans-serif;
+	font-size:1em;
+	font-style: normal;
+	font-weight: 400;
+	color: #4B4B4B;
+}
+
+header {
+	background: #414042;
+    border-bottom: 7px solid #63ce4f;
+    display: inline-block;
+	width: 100%;
+	height: 10%;
+}
+
+/*------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------*/
+.header {
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+  background-color: #f1f1f1;
+}
+
+.header h2 {
+  text-align: center;
+}
+
+.progress-container {
+  width: 100%;
+  height: 8px;
+  background: #ccc;
+}
+
+.progress-bar {
+  height: 8px;
+  background: #4caf50;
+  width: 0%;
+}
+/*------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------*/
+
+a{
+	text-decoration: none;
+	color: #ffff;
+}
+
+/*Radio styles*/
+.container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.container input {
+    position: absolute;
+    cursor: pointer;
+	display: none;
+}
+
+/* Create a custom radio button */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #eee;
+    border-radius: 50%;
+}
+
+/* When the radio button is checked, add a blue background */
+.container input:checked ~ .checkmark {
+    background-color: #63ce4f;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.container .checkmark:after {
+ 	top: 6.5px;
+	left: 6.8px;
+	border-radius: 10%;
+	width: 7px;
+	height: 7px;
+	background: white;
+}
+
+#main {
+	margin-top: 2%;
+	margin-left: 15%;
+	min-width: 80%;
+    padding: 0 20px;
+    display: inline-block;
+    box-sizing: border-box;
+}
+
+.mainHeading{
+	font-size:2em;
+	font-style: normal;
+	font-weight: 400;
+}
+
+.formBox{
+	border: 2px solid #555555;
+	width: 80%;
+	padding: 20px;
+}
+
+.inpDD{
+	font-family: 'Tajawal', sans-serif;
+	background-color: #434242;
+	border-radius: 5px;
+	color: white;
+	font-size: 0.9em;
+	border: 1px solid #555555;
+	width: 100%;
+	height: 5.4%;
+	cursor: pointer;
+	padding: 0 15px;
+	box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.formButton {
+	font-family: 'Tajawal', sans-serif;
+	background-color: #63ce4f;
+    color: white;
+    border: 1px solid #63ce4f;
+	font-size: 1em;
+    text-decoration: none;
+    display: inline-block;
+	padding: 8px 16px;
+    text-align: center;
+	-webkit-transition-duration: 0.4s;
+    transition-duration: 0.5s;
+    cursor: pointer;
+	width: 100%;
+}
+
+
+.formButton:hover {
+    background-color: white;
+    color: #434242;
+	font-size:1.2em;
+	box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.error{
+	color: red;
+	display: inline;
+}
+
+@media only screen and (max-width: 500px) {
+    body {
+		min-width: 480px;
+		font-family: 'Tajawal', sans-serif;
+		font-size:0.5em;
+		font-style: normal;
+		font-weight: 400;
+		color: #4B4B4B;
+		overflow: auto;
+    }
+	
+	header {
+		background: #414042;
+		border-bottom: 7px solid #63ce4f;
+		display: inline-block;
+		width: 100%;
+		height: 10%;
+	}
+	
+	#main {
+		width: 60%;
+		padding: 0 10px;
+		display: inline-block;
+		box-sizing: border-box;
+		margin-left: 10%;
+	}
+	
+	#intRes{
+		width: 350px; 
+		height: 125px; 
+		overflow-y: scroll;
+	}
+	
+	#results{
+		border: 1px solid #ccc;
+		padding: 6px 10px;
+		width: 100%;
+	}
+	
+	.inpDD{
+		font-family: 'Tajawal', sans-serif;
+		background-color: #434242;
+		color: white;
+		font-size: 0.9em;
+		border: 1px solid #555555;
+		width: 60%;
+		height: 3.4%;
+		cursor: pointer;
+		box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+	}
+	
+	.formButton{
+		font-family: 'Tajawal', sans-serif;
+		background-color: #63ce4f;
+		color: white;
+		border: 1px solid #63ce4f;
+		font-size: 0.9em;
+		text-decoration: none;
+		display: inline-block;
+		padding: 4px 8px;
+		text-align: center;
+		-webkit-transition-duration: 0.4s;
+		transition-duration: 0.5s;
+		cursor: pointer;
+		width: 60%;
+	}
+	
+	.formButton:hover {
+		background-color: white;
+		color: #434242;
+		box-shadow: 0 6px 8px 0 rgba(0,0,0,0.24),0 9px 25px 0 rgba(0,0,0,0.19);
+	}
+	
+	/*Radio styles*/
+	.container {
+		display: block;
+		position: relative;
+		padding-left: 35px;
+		cursor: pointer;
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+	}
+
+	/* Hide the browser's default radio button */
+	.container input {
+		position: absolute;
+		cursor: pointer;
+		display: none;
+	}
+
+	/* Create a custom radio button */
+	.checkmark {
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 10px;
+		width: 10px;
+		background-color: #eee;
+		border-radius: 50%;
+	}
+
+	/* When the radio button is checked, add a blue background */
+	.container input:checked ~ .checkmark {
+		background-color: #63ce4f;
+	}
+
+	/* Create the indicator (the dot/circle - hidden when not checked) */
+	.checkmark:after {
+		content: "";
+		position: absolute;
+		display: none;
+	}
+
+	/* Show the indicator (dot/circle) when checked */
+	.container input:checked ~ .checkmark:after {
+		display: block;
+	}
+
+	/* Style the indicator (dot/circle) */
+	.container .checkmark:after {
+		top: 3px;
+		left: 3px;
+		border-radius: 10%;
+		width: 4px;
+		height: 4px;
+		background: white;
+	}
+
+}
