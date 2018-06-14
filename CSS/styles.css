@@ -149,6 +149,7 @@ a{
 .error{
 	margin-top:2%;
 	color: #B60000;
+	display:inline-block;
 }
 
 @media only screen and (max-width: 500px) {
