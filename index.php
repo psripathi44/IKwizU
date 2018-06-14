@@ -4,6 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://fonts.googleapis.com/css?family=Tajawal" rel="stylesheet">
 <link href="CSS/styles.css" rel="stylesheet">
+<script src="JS/validation.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
@@ -16,9 +17,9 @@
 	Once submitting the inputs, you have an option to take the quiz to test yourself and see where are at in your fav genre.<br/><br/> 
 	Once you take the quiz, you can challenge your friends by sharing the same quiz to them via Facebook, Twitter, and other platforms, and see if they can beat you.<br/><br/>
 	<div class="formBox">
-		<form action="quizshere.php" method="post">
+		<form action="quizshere.php" method="post" name="inputsForm" onSubmit="return quizInpValidation();">
 			Select Category:<br/>
-			<select name="inpCategory" class="inpDD">
+			<select id="inpCategory" name="inpCategory" class="inpDD">
 				<option value="any">Any category</option>
 				<option value="9">General Knowledge</option>
 				<option value="10">Entertainment: Books</option>
@@ -47,7 +48,7 @@
 			</select><br/><br/>
 
 			Select Difficulty:<br/>
-			<select name="inpDifficulty" class="inpDD">
+			<select id="inpDifficulty" name="inpDifficulty" class="inpDD">
 				<option value="any">Any Difficulty</option>
 				<option value="easy">Easy</option>
 				<option value="medium">Medium</option>
@@ -55,7 +56,7 @@
 			</select><br/><br/>
 			
 			Select Type:<br/>
-			<select name="inpQtype" class="inpDD">
+			<select id="inpQtype" name="inpQtype" class="inpDD">
 				<option value="any">Any Type</option>
 				<option value="multiple">Multiple Choice</option>
 				<option value="boolean">True / False</option>
@@ -63,6 +64,7 @@
 
 			<br/>
 			<button class="formButton" name="proceed" type="submit"><i class="fa fa-angle-double-right"></i> &nbsp;Click here to proceed</button>
+			<div class="error" id="errContainer"></div>
 		</form>
 	</div>
 </div>

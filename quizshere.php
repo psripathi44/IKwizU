@@ -4,6 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://fonts.googleapis.com/css?family=Tajawal" rel="stylesheet">
 <link href="CSS/styles.css" rel="stylesheet">
+<script src="JS/validation.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
@@ -18,14 +19,18 @@ if(isset($_POST["proceed"])){
 	$inpQtype = $_POST["inpQtype"];
 	$url = 'https://opentdb.com/api.php?amount=20';
 	
-	if($inpCategory != "any")
-		$url.= '&category='.$inpCategory;
-	
-	if($inpDifficulty != "any")
-		$url.= '&difficulty='.$inpDifficulty;
-	
-	if($inpQtype != "any")
-		$url.= '&type='.$inpQtype;	
+	if($inpCategory == 30)
+		$url = 'https://opentdb.com/api.php?amount=18';	
+	else{
+		if($inpCategory != "any")
+			$url.= '&category='.$inpCategory;
+		
+		if($inpDifficulty != "any")
+			$url.= '&difficulty='.$inpDifficulty;
+		
+		if($inpQtype != "any")
+			$url.= '&type='.$inpQtype;
+	}
 	
 	$data = file_get_contents($url, true); // put the contents of the file into a variable
 	$characters = json_decode($data, true); // decode the JSON feed
@@ -33,7 +38,7 @@ if(isset($_POST["proceed"])){
 	$quesArr = [];
 	$corrAns = [];
 	
-	print "<form action='' method='POST'>";
+	print "<form action='' class ='quizFormBox' method='POST' name='quizForm' enctype='multipart/form-data'  onSubmit='return quizFormValidation();'>";
 	foreach ($characters as $character) {
 		if(is_array($character) || is_object($character))
 		foreach($character as $value){
