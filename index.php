@@ -30,7 +30,9 @@
 	Once you take the quiz, you can challenge your friends by sharing the same quiz to them via Facebook, Twitter, and other platforms, and see if they can beat you.<br/><br/>
 	<div class="formBox">
 		<form action="quizshere.php" method="post" name="inputsForm" onSubmit="return quizInpValidation();">
+			Name:<br/>
 			<input name="inpName" type="text" value="" placeholder="Enter your name here.." class = "inpText" style="background-color:#FFFFF"/> <br/><br/>
+			Email:<br/>
 			<input name="inpEmail" type="text" value="" placeholder="Enter your email here.." class ="inpText" style="background-color:#FFFFF"/><br/><br/>
 			Select Category:<br/>
 			<select id="inpCategory" name="inpCategory" class="inpDD">
