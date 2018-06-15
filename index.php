@@ -9,7 +9,19 @@
 </head>
 <body>
 <header>
-	<h2 style="margin-left: 10%;"><a href="index.php">IKwizU</a></h2>
+	<nav class="navBar">
+	  <nav class="menuwrapper">
+		<div class="logo">IKwizU</div>
+			<input type="checkbox" id="menu-toggle" />
+			<label for="menu-toggle" class="label-toggle"></label>
+			<ul>
+				<li><a href="about.php" >About</a></li>
+				<li><a href="standings.php" >Check Standings </a></li>
+				<li><a href="bulkOptions.php" >For group at large?</a></li>
+				<li><a href="feedback.php">Feedback</a></li>
+			</ul>
+	  </nav>
+	</nav>
 </header>
 <div id="main">
 	<span class="mainHeading">Welcome to the TRIVIA Quiz by IKwizU.</span><br/><br/>
@@ -18,6 +30,8 @@
 	Once you take the quiz, you can challenge your friends by sharing the same quiz to them via Facebook, Twitter, and other platforms, and see if they can beat you.<br/><br/>
 	<div class="formBox">
 		<form action="quizshere.php" method="post" name="inputsForm" onSubmit="return quizInpValidation();">
+			<input name="inpName" type="text" value="" placeholder="Enter your name here.." class = "inpText" style="background-color:#FFFFF"/> <br/><br/>
+			<input name="inpEmail" type="text" value="" placeholder="Enter your email here.." class ="inpText" style="background-color:#FFFFF"/><br/><br/>
 			Select Category:<br/>
 			<select id="inpCategory" name="inpCategory" class="inpDD">
 				<option value="any">Any category</option>
@@ -60,9 +74,8 @@
 				<option value="any">Any Type</option>
 				<option value="multiple">Multiple Choice</option>
 				<option value="boolean">True / False</option>
-			</select><br/><br/>
-
-			<br/>
+			</select><br/><br/><br/>
+			
 			<button class="formButton" name="proceed" type="submit"><i class="fa fa-angle-double-right"></i> &nbsp;Click here to proceed</button>
 			<div class="error" id="errContainer"></div>
 		</form>

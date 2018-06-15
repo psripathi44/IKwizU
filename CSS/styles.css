@@ -10,16 +10,143 @@ body {
 
 header {
 	background: #414042;
-    border-bottom: 7px solid #63ce4f;
-    display: inline-block;
+    border-bottom: 5px solid #63ce4f;
 	width: 100%;
-	height: 10%;
 }
 
 a{
 	text-decoration: none;
 	color: #ffff;
 }
+
+.inpText{
+	font-family: 'Tajawal', sans-serif;
+	background-color: #434242;
+	border-radius: 5px;
+	color: white;
+	font-size: 0.9em;
+	border: 1px solid #555555;
+	width: 100%;
+	height: 5.4%;
+	cursor: pointer;
+	padding: 0 15px;
+	box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.inpText::-webkit-input-placeholder{ /*To make the name and email textboxes placeholder text bold and white*/
+    color: white;
+    font-weight: 400;
+}
+.inpText:-moz-placeholder{
+    color: white;
+    font-weight: 400;
+}
+.inpText:-ms-input-placeholder
+    color: white;
+    font-weight: 400;
+}
+
+
+/*FEEDBACK STYLES BEGIN*/
+left {
+	width: 65%;
+}
+
+right {
+	width: 25%;
+	margin-left: 10px;
+	margin-top:15%;
+}
+
+left, right {
+	font-family: 'Tajawal', sans-serif;
+	margin-bottom: 30px;
+	float: left;
+}
+
+.feedbackFormTB{
+	font-family: 'Tajawal', sans-serif;
+	width: 32%;
+	height: 40px;
+	font-size: 0.9em;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #555555;
+    box-sizing: border-box;
+}
+
+.feedbackFormTA{
+	font-family: 'Tajawal', sans-serif;
+	width: 64.5%;
+	font-size: 0.9em;
+    padding: 20px 20px 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #555555;
+    box-sizing: border-box;
+	resize: none;
+}
+
+.feedbackFormButton {
+	font-family: 'Tajawal', sans-serif;
+	background-color: #434242;
+    color: white;
+    border: 1px solid #555555;
+	font-size: 0.9em;
+    text-decoration: none;
+    display: inline-block;
+	padding: 16px 32px;
+    text-align: center;
+	-webkit-transition-duration: 0.4s;
+    transition-duration: 0.5s;
+    cursor: pointer;
+	box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.feedbackFormButton:hover {
+    background-color: white;
+    color: #434242;
+	box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+
+.cfTitle{	/*Contact form title*/
+	color: #63ce4f; 
+	font-size: 1.8em;
+}
+
+.cfText{	/*Contact form description*/
+	font-size: 1.01em;
+}
+
+.r-cont-title{
+	font-size: 25px; 
+	background-image: linear-gradient(transparent 34px, #B60000 0px);
+}
+
+.r-cont-details{
+	color:#B60000; 
+	font-size: 18px;
+}
+
+.varSocial {
+	margin-top: 40px;
+	margin-left: -45px;
+}
+.varSocial ul li {
+	display: inline-block;
+}
+.varSocial i.fa {
+	font-size: 30px;
+	padding: 4px 10px;
+	color: #4B4B4B;
+	transition: all 0.5s;
+}
+.varSocial i.fa:hover {
+	color: #B60000;
+}	
+/*FEEDBACK STYLES END*/
 
 /*Radio styles*/
 .container {
@@ -152,7 +279,90 @@ a{
 	display:inline-block;
 }
 
-@media only screen and (max-width: 500px) {
+/*MENU STYLES BEGIN*/
+
+.navBar {
+	font-family: 'Tajawal', sans-serif;
+	background-color: #434242;
+	min-width: 100%;
+}
+
+.logo {
+	font-family: 'Tajawal', sans-serif;
+	display: inline-block;
+    /* height: 35px; */
+    margin: 1em 0 1em -0.7em;
+    width: 300px;
+    color: white;
+    font-size: 1.1em;
+}
+
+.logo a{
+	color: white;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.menuwrapper {
+	margin: 0 auto;
+	max-width: 960px;
+	padding: 0 2%;
+}
+
+nav ul {
+	display: flex;
+	justify-content: space-between;
+	list-style-type: none;
+	width: 50%;
+}
+nav ul a {
+	color: white;
+	text-decoration: none;
+	transition: all .5s ease;
+}
+
+nav ul a:hover {
+	color: #ffff; /*#99be74*/
+	transition: all .2s ease;
+	border-bottom:3px solid #ffff;
+}
+nav li {
+	display: inline-block;
+}
+nav li.current {
+	border-bottom:3px solid #ffff;
+}
+
+nav #menu-toggle {
+	display: none;
+}
+nav .label-toggle {
+	display: none;
+}
+nav .menuwrapper {
+	align-items: center;
+	display: flex;
+	justify-content: space-between;
+}
+/*MENU STYLES END*/
+
+footer {
+	font-size: 0.8em;
+	color: #FFF;
+	background-color: #434242;
+	text-align: center;
+	clear: both;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	bottom:0;
+	left:0;
+	right:0;
+	min-width: 400px;
+}
+
+@media screen and (max-width: 768px) {		
+}
+@media only screen and (max-width: 768px) {
     body {
 		min-width: 480px;
 		font-family: 'Tajawal', sans-serif;
@@ -165,10 +375,8 @@ a{
 	
 	header {
 		background: #414042;
-		border-bottom: 7px solid #63ce4f;
-		display: inline-block;
+		border-bottom: 5px solid #63ce4f;
 		width: 100%;
-		height: 10%;
 	}
 	
 	#main {
@@ -197,7 +405,7 @@ a{
 		color: white;
 		font-size: 0.9em;
 		border: 1px solid #555555;
-		width: 60%;
+		width: 100%;
 		height: 3.4%;
 		cursor: pointer;
 		box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
@@ -216,7 +424,7 @@ a{
 		-webkit-transition-duration: 0.4s;
 		transition-duration: 0.5s;
 		cursor: pointer;
-		width: 60%;
+		width: 100%;
 	}
 	
 	.formButton:hover {
@@ -281,5 +489,70 @@ a{
 		height: 4px;
 		background: white;
 	}
+	
+	.formBox{
+		border: 2px solid #555555;
+		width: 80%;
+		padding: 20px;
+	}
+
+	.quizFormBox{
+		width: 80%;
+		padding: 20px;
+	}
+	
+	/*MENU STYLES BEGIN*/
+	.logo{
+		display: inline-block;
+		/* height: 35px; */
+		margin: 1em 1em 0em 3.7em;
+		width: 250px;
+		color: white;
+		font-size: 20px;
+	}
+	nav nav ul a {
+		color: #ffffff;
+	}
+	nav ul {
+		background-color: #434242;
+		display: block;
+		height: 0;
+		list-style-type: none;
+		opacity: 0;
+		text-align: center;
+		transition: all 1s ease;
+		width: 95%;
+		visibility: hidden;
+	}
+	nav li {
+		border-bottom: 2px solid #ffffff;
+		color: #ffffff;
+		display: block;
+		font-size: 1.5em;
+		padding: 1em 2em 1em 1em;
+		margin-left: -10%;
+	}
+	nav #menu-toggle:checked ~ ul {
+		opacity: 1;
+		height: 100vh;
+		visibility: visible;
+	}
+	nav .label-toggle {
+		background: linear-gradient(to bottom, #ffffff 0%, #ffffff 20%, transparent 20%, transparent 40%, #ffffff 40%, #ffffff 60%, transparent 60%, transparent 80%, #ffffff 80%, #ffffff 100%);
+		cursor: pointer;
+		display: block;
+		float: right;
+		height: 25px;
+		margin-top: 2em;
+		width: 35px;
+	}
+	nav .menuwrapper {
+		display: block;
+	}
+	
+	nav ul a:hover {
+		color: #ffff; /*#99be74*/
+	}
+	/*MENU STYLES END*/
 
 }

@@ -1,6 +1,6 @@
 isValid = false;
 
-function quizInpValidation(evt){	
+function quizInpValidation(){	
 	if(validateHere()){}
 		return isValid;
 }

@@ -14,9 +14,14 @@
 <div id="main">
 <?PHP
 if(isset($_POST["proceed"])){
+	require "db.inc";
+					
 	$inpCategory = $_POST["inpCategory"];
 	$inpDifficulty = $_POST["inpDifficulty"];
 	$inpQtype = $_POST["inpQtype"];
+	$inpName = $_POST["inpName"];
+	$inpEmail = $_POST["inpEmail"];
+	
 	$url = 'https://opentdb.com/api.php?amount=20';
 	
 	if($inpCategory == 30)
@@ -38,34 +43,56 @@ if(isset($_POST["proceed"])){
 	$quesArr = [];
 	$corrAns = [];
 	
-	print "<form action='' class ='quizFormBox' method='POST' name='quizForm' enctype='multipart/form-data'  onSubmit='return quizFormValidation();'>";
-	foreach ($characters as $character) {
-		if(is_array($character) || is_object($character))
-		foreach($character as $value){
-			$i += 1;
-			print $i.". ".$value['question']."<br/><br/>";
-			$arr = $value['incorrect_answers'];
-			array_push($arr, $value['correct_answer']);
-			
-			shuffle($arr); //This shuffles the choices every time the user takes the test.
-			
-			array_push($corrAns, $value['correct_answer']);
-			array_push($quesArr, $value['question']);
-			
-			foreach($arr as $key=>$choiceOptions){
-				print"<label class='container'>$choiceOptions
-						<input type='radio' name='Ques$i' id='$key' value='$choiceOptions'>
-						<span class='checkmark'></span>
-						</label><br/>";
+	if (!($connection = @ mysqli_connect("localhost", $username, $password)))//Connecting to localhost
+		die("Could not connect to database"); 
+	
+	if (!mysqli_select_db($connection, $databaseName)) //connecting to Database using "db.inc"
+		showerror($connection);
+		
+	$nextRecId_row = mysqli_query($connection, "select max(id)+1 from tokens");
+	$nextRecId = mysql_fetch_row($l_nextWineID_row); //Fetching the next wine_id, this acts as sequence
+	$current_date = date("Y-m-d H:i:s");
+		
+	$insToken = "insert into table tokens(id, created_date, name, email_id) values({$nextRecId}, '{$current_date}', '{$inpName}', '{$inpEmail}')";
+	if(!@mysqli_query ($connection, $insToken)){
+		print '<br><b style="color:red">Exception:</b> '; //Exception raised if the token insertion fails.
+		throw new Exception(showerror());
+	} else {
+		print "<form action='' class ='quizFormBox' method='POST' name='quizForm' enctype='multipart/form-data'  onSubmit='return quizFormValidation();'>";
+		foreach ($characters as $character) {
+			if(is_array($character) || is_object($character))
+			foreach($character as $value){
+				$i += 1;
+				print $i.". ".$value['question']."<br/><br/>";
+				$arr = $value['incorrect_answers'];
+				array_push($arr, $value['correct_answer']);
+				
+				shuffle($arr); //This shuffles the choices every time the user takes the test.
+				
+				$insQues = "INSERT INTO `quizbytoken`(token, question, optA, optB, optC, optD, optKey) 
+				VALUES ({$nextRecId}, {$value['question']}, {$arr[0]}, {$arr[1]}, {$arr[2]}, {$arr[3]}, {$value['correct_answer']})";
+				
+				if(!@mysqli_query ($connection, $insQues)){
+					print '<br><b style="color:red">Exception:</b> '; //Exception raised if the token insertion fails.
+					throw new Exception(showerror());
+				} else {
+					foreach($arr as $key=>$choiceOptions){
+						print"<label class='container'>$choiceOptions
+								<input type='radio' name='Ques$i' id='$key' value='$choiceOptions'>
+								<span class='checkmark'></span>
+								</label><br/>";
+					}
+					print "<br/><br/>";
+				}
 			}
-			print "<br/><br/>";
 		}
+		/* We can remove these statements from here, and in the next page, the answers for the questions can be fetched and displayed from DB
+		foreach($corrAns as $key)
+			echo '<input type="hidden" name="key[]" value="'. $key. '">';
+		foreach($quesArr as $ques)
+			echo '<input type="hidden" name="ques[]" value="'. $ques. '">';*/
+		print "<button class='formButton' name='submit' type='submit'>Submit</button></form>";
 	}
-	foreach($corrAns as $key)
-		echo '<input type="hidden" name="key[]" value="'. $key. '">';
-	foreach($quesArr as $ques)
-		echo '<input type="hidden" name="ques[]" value="'. $ques. '">';
-	print "<button class='formButton' name='submit' type='submit'>Submit</button></form>";
 }
 
 if(isset($_POST["submit"])){
