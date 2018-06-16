@@ -1,6 +1,6 @@
 /*This script validates if all questions answered in quiz or not*/ 
 function quizFormValidation(){
-	for(var i = 1 ; i <= 20 ; i++){
+	for(var i = 1 ; i <= 2 ; i++){
 	  var choiceObjs = document.getElementsByName('Ques'+i);
 	  var selected = false;
 	  for (var j = 0, len = choiceObjs.length; j < len; j++){

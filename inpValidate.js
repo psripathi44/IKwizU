@@ -1,4 +1,4 @@
-isValid = false;
+isValid = true;
 
 function quizInpValidation(){	
 	if(validateHere()){}
