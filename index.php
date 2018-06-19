@@ -19,7 +19,7 @@
 			<input type="checkbox" id="menu-toggle" />
 			<label for="menu-toggle" class="label-toggle"></label>
 			<ul>
-				<li><a href="about.php" >About</a></li>
+				<li><a href="#" >About</a></li>
 				<li><a href="standings.php" >Check Standings </a></li>
 				<li><a href="bulkOptions.php" >For group at large?</a></li>
 				<li><a href="feedback.php">Feedback</a></li>
@@ -28,6 +28,7 @@
 	</nav>
 </header>
 <div id="main">
+	<br/><br/>
 	<span class="mainHeading">Welcome to the TRIVIA Quiz by IKwizU.</span><br/><br/>
 	Here you can select the category the questions that would be based on, and the level of difficulty and type of questions as well.<br/>
 	Once submitting the inputs, you have an option to take the quiz to test yourself and see where are at in your fav genre.<br/><br/> 

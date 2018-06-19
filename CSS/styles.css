@@ -50,7 +50,11 @@ a{
 /*FEEDBACK STYLES BEGIN*/
 
 left {
-	width: 75%;
+	width: 65%;
+}
+
+left.standings {
+	width: 55%; 
 }
 
 right {
@@ -58,12 +62,20 @@ right {
 	margin-left: 10px;
 	margin-top:15%;
 }
+right.standings {
+	width: 30%;
+    margin-left: 20px;
+    margin-top: 10%;
+    padding-left: 4%;
+    border-left: 1.5px solid #9b9b9b;
+}
 
 left, right {
 	font-family: 'Tajawal', sans-serif;
 	margin-bottom: 30px;
 	float: left;
 }
+
 
 .feedbackFormTB{
 	font-family: 'Tajawal', sans-serif;
@@ -149,6 +161,74 @@ left, right {
 }	
 /*FEEDBACK STYLES END*/
 
+
+/*STANDINGS STYLES BEGIN*/
+.standingsFormTB{
+	font-family: 'Tajawal', sans-serif;
+    width: 55%;
+    height: 40px;
+    font-size: 0.9em;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #555555;
+    box-sizing: border-box;
+	box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.standingsFormButton {
+	font-family: 'Tajawal', sans-serif;
+    background-color: #434242;
+    color: white;
+    border: 1px solid #555555;
+    font-size: 0.9em;
+    text-decoration: none;
+    display: inline-block;
+    padding: 8px 16px;
+    text-align: center;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.5s;
+    cursor: pointer;
+	box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.standingsFormButton:hover {
+    background-color: white;
+    color: #434242;
+	box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+/* Table styles here */
+.standingsTable {
+	border-collapse: collapse;
+	font-size: 14px;
+	min-width: 537px;
+	box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);	
+}
+
+.standingsTable th, 
+.standingsTable td {
+	border: 1px solid #5D5D5D;
+	padding: 10px 20px;
+}
+
+.standingsTable thead th { /*For header*/
+	background-color: #eaf2ff;
+	color: #000;
+	border-color: #6ea1cc !important;
+	text-transform: uppercase;
+}
+
+.standingsTable tbody td { /*For Body*/
+	color: #353535;
+}   
+
+/*STANDINGS STYLES END*/
+
+
+
+
+
 /*Radio styles*/
 .container {
     display: block;
@@ -207,7 +287,6 @@ left, right {
 }
 
 #main {
-	margin-top: 2%;
 	margin-left: 15%;
 	min-width: 80%;
     padding: 0 20px;
@@ -619,5 +698,35 @@ footer {
 		box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
 	}
 	/*FEEDBACK STYLES END*/
+	
+	/*STANDINGS STYLES BEGIN*/
+	.standingsFormTB{
+		font-family: 'Tajawal', sans-serif;
+		width: 32%;
+		height: 25px;
+		font-size: 1.2em;
+		padding: 12px 20px;
+		margin: 8px 0;
+		display: inline-block;
+		border: 1px solid #555555;
+		box-sizing: border-box;
+	}
+
+	.standingsFormButton {
+		font-family: 'Tajawal', sans-serif;
+		background-color: #434242;
+		color: white;
+		border: 1px solid #555555;
+		font-size: 1.2em;
+		text-decoration: none;
+		display: inline-block;
+		padding: 12px 24px;
+		text-align: center;
+		-webkit-transition-duration: 0.4s;
+		transition-duration: 0.5s;
+		cursor: pointer;
+		box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+	}
+	/*STANDINGS STYLES END*/
 
 }

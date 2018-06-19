@@ -18,7 +18,7 @@
 			<input type="checkbox" id="menu-toggle" />
 			<label for="menu-toggle" class="label-toggle"></label>
 			<ul>
-				<li><a href="about.php" >About</a></li>
+				<li><a href="#" >About</a></li>
 				<li><a href="standings.php" >Check Standings </a></li>
 				<li><a href="bulkOptions.php" >For group at large?</a></li>
 				<li><a href="feedback.php">Feedback</a></li>
