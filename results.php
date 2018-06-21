@@ -13,14 +13,14 @@
 <header>
 	<nav class="navBar">
 	  <nav class="menuwrapper">
-		<div class="logo"><a href="index.php">IKwizU</a></div>
+		<div class="logo"><a href="/IKwizU">IKwizU</a></div>
 			<input type="checkbox" id="menu-toggle" />
 			<label for="menu-toggle" class="label-toggle"></label>
 			<ul>
 				<li><a href="#" >About</a></li>
-				<li><a href="standings.php" >Check Standings </a></li>
-				<li><a href="bulkOptions.php" >For group at large?</a></li>
-				<li><a href="feedback.php">Feedback</a></li>
+				<li><a href="../standings/" >Check Standings </a></li>
+				<li><a href="../feedback/">Feedback</a></li>
+				<li><a href="../analytics/">Analytics</a></li>
 			</ul>
 	  </nav>
 	</nav>

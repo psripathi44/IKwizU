@@ -48,7 +48,6 @@ a{
 
 
 /*FEEDBACK STYLES BEGIN*/
-
 left {
 	width: 65%;
 }
@@ -65,7 +64,7 @@ right {
 right.standings {
 	width: 30%;
     margin-left: 20px;
-    margin-top: 10%;
+    margin-top: 5%;
     padding-left: 4%;
     border-left: 1.5px solid #9b9b9b;
 }
@@ -75,7 +74,6 @@ left, right {
 	margin-bottom: 30px;
 	float: left;
 }
-
 
 .feedbackFormTB{
 	font-family: 'Tajawal', sans-serif;

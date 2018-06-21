@@ -3,27 +3,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Feed us back</title>
 <link rel="icon" type="image/ico" href="Images/favicon.ico">
-<link href="CSS/styles.css" rel="stylesheet" type="text/css">
-<link href="CSS/menuStyles.css" rel="stylesheet" type="text/css">
-<link href="CSS/styles_mediaQueries.css" rel="stylesheet" type="text/css">
-
+<link href="../CSS/styles.css" rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/css?family=Tajawal" rel="stylesheet">
-<style>
-
-</style>
 </head>
 <body>
 <header>
 	<nav class="navBar">
 	  <nav class="menuwrapper">
-		<div class="logo"><a href="index.php"> IKwizU </a></div>
+		<div class="logo"><a href="/IKwizU"> IKwizU </a></div>
 			<input type="checkbox" id="menu-toggle" />
 			<label for="menu-toggle" class="label-toggle"></label>
 			<ul>
 				<li><a href="#" >About</a></li>
-				<li><a href="standings.php" >Check Standings </a></li>
-				<li><a href="bulkOptions.php" >For group at large?</a></li>
+				<li><a href="../standings/" >Check Standings </a></li>
 				<li class="current"><a href="#">Feedback</a></li>
+				<li><a href="../analytics/">Analytics</a></li>
 			</ul>
 	  </nav>
 	</nav>
@@ -47,9 +41,10 @@
 	<?php
 	if(isset($_POST["submit"]))
 	{
-		$name=$_REQUEST['name'];
-		$message=$_REQUEST['message'];
-		if (($name=="")||($message==""))
+		$name=$_POST['name'];
+		$email=$_POST['email'];
+		$message=$_POST['message'];
+		if (($name=="")||($email=="")||($message==""))
 			{
 				print '<br/><b style="color:#B60000">Exception:</b> ';
 				echo "<br/><b>All fields are required. Please fill all the fields.</b>";
@@ -60,19 +55,17 @@
 			
 			$mail = new PHPMailer;
 			
-			$mail->isSMTP();                                   // Set mailer to use SMTP
-			$mail->Host = 'mx1.hostinger.com';                 // Specify main and backup SMTP servers
-			$mail->SMTPAuth = true;                            // Enable SMTP authentication
-			$mail->Username = 'admin@bugradanalytics.com';     // SMTP username
-			$mail->Password = 'fO8eTlVa0PUf4m'; 		       // SMTP password
-			$mail->SMTPSecure = 'true';                        // Enable TLS encryption, `ssl` also accepted
-			$mail->Port = 587;                                 // TCP port to connect to
+			$mail->isSMTP();									// Set mailer to use SMTP
+			$mail->Host = 'host name';                 			// Specify main and backup SMTP servers
+			$mail->SMTPAuth = true;								// Enable SMTP authentication
+			$mail->Username = 'user@domain.com';				// SMTP username
+			$mail->Password = 'passcode';						// SMTP password
+			$mail->SMTPSecure = 'true';							// Enable TLS encryption, `ssl` also accepted
+			$mail->Port = 587;									// TCP port to connect to
 			
-			$mail->setFrom('admin@bugradanalytics.com', 'Bradley Graduate school Analytics');
-			$mail->addReplyTo('admin@bugradanalytics.com', 'Bradley Graduate school Analytics');
-			$mail->addAddress('prashu421@gmail.com');   // Add a recipient
-			//$mail->addCC('cc@example.com');
-			//$mail->addBCC('bcc@example.com');
+			$mail->setFrom('user@domain.com', $name);
+			$mail->addReplyTo($email, $name);
+			$mail->addAddress('prashu421@gmail.com');   		// Add a recipient
 			
 			$mail->isHTML(true);  // Set email format to HTML
 
@@ -81,23 +74,22 @@
 			$bodyContent .= "<link href='https://fonts.googleapis.com/css?family=Tajawal' rel='stylesheet'>\n";
 			$bodyContent .= "</head>\n";  
 			$bodyContent .= "<body style=\"font-family: 'Tajawal', sans-serif; font-size: 1em; font-style: normal; font-weight: 300; color: #4B4B4B;\">\n";
-			$bodyContent .= "<br/> Hello Supervisor!<br/><br/> PFB feeback from the user - '$name'.<br/><br/>\n";
-			$bodyContent .= "Email ID: $user_check <br/> Message: $message <br/>\n";
-			$bodyContent .= "<br/> Regards, <br/> Team BU Analytics.<br/><br/> <b>Note: This is an automated email. Do not reply to it.</b>\n"; 
+			$bodyContent .= "<br/> Hello Admin!<br/><br/> PFB feeback from the user - '$name'.<br/><br/>\n";
+			$bodyContent .= "Email ID: $email <br/> Message: $message <br/>\n";
+			$bodyContent .= "<br/> Regards, <br/> Team IKwizU.<br/><br/>\n";
 			$bodyContent .= "</body>\n"; 
 			$bodyContent .= "</html>\n"; 
 			
 			
-			$mail->Subject = 'Feedback - Bradley Grad School Analytics';
+			$mail->Subject = 'Feedback - IKwizU';
 			$mail->Body    = $bodyContent;
 			
 			if(!$mail->send()) {
-				echo "Email couldn't be send could not be sent.";
-				echo 'Mailer Error: ' . $mail->ErrorInfo;
+				echo "<br/><span style='color:#B60000;'>Error: </span> <br/>Email could not be sent.";
+				echo '<br/>Mailer Error: ' . $mail->ErrorInfo;
 			} else {
-				echo "<br/><b>Your feedback has been recorded, thanks!</b>";
+				echo "<br/><b>Your feedback has been recorded, thank you for helping us get better!</b>";
 			}
-
 		 /*Email code END*/
 			}
 		}  
