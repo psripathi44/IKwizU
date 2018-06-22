@@ -6,7 +6,7 @@
 <title> IKwizU </title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://fonts.googleapis.com/css?family=Tajawal" rel="stylesheet">
-<link href="CSS/styles.css" rel="stylesheet">
+<link href="../CSS/styles.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
@@ -34,7 +34,12 @@ if (!($connection = @ mysqli_connect("localhost", $username, $password)))//Conne
 if (!mysqli_select_db($connection, $databaseName)) //connecting to Database using "db.inc"
 	showerror($connection);
 	
-$lToken = $_SESSION['currToken'];
+//Checking and setting the token whether a new User token or a challenge token	
+if(isset($_SESSION['challenge']))
+	$lToken = $_SESSION['challToken'];
+else
+	$lToken = $_SESSION['currToken'];
+
 $inpName = $_SESSION['inpName'];
 $inpEmail = $_SESSION['inpEmail'];
 
@@ -42,8 +47,8 @@ $quizAttemptCheckQ = mysqli_query($connection, "select count(1) from scorebytoke
 $quizAttemptCheck = mysqli_fetch_row($quizAttemptCheckQ);
 
 if($quizAttemptCheck[0] == 0){
+	$_SESSION['quizAttempted'] = true;
 	if(isset($_POST["submit"])){
-		
 		$quesArr = [];
 		$ansArr = [];
 		$userSelections = [];
@@ -100,7 +105,7 @@ if($quizAttemptCheck[0] == 0){
 	$ansKeyArr = [];
 	
 	try{
-		$quesAnsQueryStmt = "select question, optKey from quizbytoken where token = $lToken order by qNo ASC";
+		$quesAnsQueryStmt = "select question, optKey from quizbytoken where token = $lToken  order by qNo ASC";
 		$quesAnsQuery = @ mysqli_query ($connection, $quesAnsQueryStmt);
 		while ($record = @ mysqli_fetch_array($quesAnsQuery)){
 			array_push($quesArr, $record["question"]);

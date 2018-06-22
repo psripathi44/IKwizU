@@ -1,3 +1,4 @@
 RewriteEngine On    			# Turn on the rewriting engine
 #RewriteCond %{HTTPS} off 		# Will make your HTTP requests posted as HTTPS(provided you have SSL certficate activated for the domain)
 RewriteRule ^([a-z]+)\//?$ $1.php [NC]
+RewriteRule ^([a-z]+)\/([0-9]+)\/?$ challenge.php?challengeToken=$2 [NC]
