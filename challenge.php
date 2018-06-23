@@ -101,7 +101,7 @@ if(isset($_POST["proceed"])){
 			<input name="inpEmail" type="email" value="" placeholder="Enter your email here.." class ="feedbackFormTB" style="background-color:#FFFFF" required/><br/><br/>
 			<input type="submit" name ="proceed" value="Proceed to challenge" class="challengeFormButton"/>&nbsp;&nbsp;&nbsp;&nbsp;
 			<input type="reset" name ="reset" value="Reset Fields" class="challengeFormButton"/><br/><br/><br/>
-			<label><span style="color: #B60000;">Note: </span>Please mind your email has to be unique, as you can attempt this challenge only once."</label>
+			<label><span style="color: #B60000;">Note: </span>Please mind your email has to be unique, as you can attempt this challenge only once.</label>
 		</form>
 	<?PHP
 	}

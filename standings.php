@@ -91,7 +91,7 @@ print "Try these quizes if you havent't tried already. Sorted from Hardest to mo
 		$tokenLinksResults = @ mysqli_query ($connection, $tokenLinksQueryStmt);
 		while ($record = @ mysqli_fetch_array($tokenLinksResults)){
 			$i += 1;
-			print "$i. ".$record["token"]."<br/><br/>";
+			print "<i class='fa fa-angle-double-right'></i><a class='others' href = 'http://localhost/IKwizU/challenge/".$record["token"]."'> Attempt challenge ". $record["token"]."</a><br/><br/>";
 		}
 	}
 	catch(Exception $e){
