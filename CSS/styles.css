@@ -62,8 +62,8 @@ a.others:hover{
 left {
 	width: 65%;
 }
-
-left.standings {
+left.standings,
+left.challenge{
 	width: 55%; 
 }
 
@@ -76,6 +76,13 @@ right.standings {
 	width: 30%;
     margin-left: 20px;
     margin-top: 5%;
+    padding-left: 4%;
+    border-left: 1.5px solid #9b9b9b;
+}
+right.challenge {
+	width: 30%;
+    margin-left: 20px;
+    margin-top: 0%;
     padding-left: 4%;
     border-left: 1.5px solid #9b9b9b;
 }
@@ -222,10 +229,24 @@ left, right {
 	box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);	
 }
 
+.challengeStandings {
+	border-collapse: collapse;
+	font-size: 14px;
+	min-width: 200px;
+	text-align: center;
+	box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);	
+}
+
 .standingsTable th, 
 .standingsTable td {
 	border: 1px solid #5D5D5D;
 	padding: 10px 20px;
+}
+
+.challengeStandings th, 
+.challengeStandings td {
+	border: 1px solid #5D5D5D;
+	padding: 5px 18px;
 }
 
 .standingsTable thead th { /*For header*/

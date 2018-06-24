@@ -47,7 +47,6 @@ $quizAttemptCheckQ = mysqli_query($connection, "select count(1) from scorebytoke
 $quizAttemptCheck = mysqli_fetch_row($quizAttemptCheckQ);
 
 if($quizAttemptCheck[0] == 0){
-	$_SESSION['quizAttempted'] = true;
 	if(isset($_POST["submit"])){
 		$quesArr = [];
 		$ansArr = [];
@@ -129,7 +128,7 @@ if($quizAttemptCheck[0] == 0){
 		print "Error occured while processing your request - ". $e;
 	}
 	
-	print "Your score: $lScore<br/><br/>";
+	print "<br/>Your score: $lScore<br/><br/>";
 		
 	for($i=0; $i<15; $i++){
 		print ($i+1).".".$quesArr[$i]." <br/>" ;

@@ -148,7 +148,7 @@ if(isset($_POST["proceed"])){
 			}
 		}
 	}
-	header("Location: http://localhost/IKwizU/quizshere.php");
+	header("Location: http://localhost/IKwizU/quizshere/");
 	exit;
 }
 ?>

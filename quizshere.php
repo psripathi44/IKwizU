@@ -27,13 +27,12 @@
 	</nav>
 </header>
 <div id="main">
-<form action="results.php" class ="quizFormBox" method="POST" name="quizForm" onSubmit="return quizFormValidation();">
+<form action="../results/" class ="quizFormBox" method="POST" name="quizForm" onSubmit="return quizFormValidation();">
 <?PHP
 require "db.inc";
 
 if(!isset($_SESSION['quizAttempted'])){
-    $_SESSION['quizAttempted'] = true;
-
+	$_SESSION['quizAttempted'] = true;
 	$lToken = $_SESSION['currToken'];
 	$i = 0;
 	$quesArr = [];
@@ -66,7 +65,7 @@ if(!isset($_SESSION['quizAttempted'])){
 	print "<button class='formButton' name='submit' type='submit'>Submit</button></form>";
 
 }else{
-    header("Location: http://localhost/IKwizU/results.php");
+    header("Location: http://localhost/IKwizU/results/");
 	exit;
 }
 ?>
