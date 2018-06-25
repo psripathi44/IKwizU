@@ -148,6 +148,10 @@ if(isset($_POST["proceed"])){
 			}
 		}
 	}
+	
+	if(isset($_SESSION['quizAttempted']))
+		unset($_SESSION['quizAttempted']); 
+	
 	header("Location: http://localhost/IKwizU/quizshere/");
 	exit;
 }

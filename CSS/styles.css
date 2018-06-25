@@ -75,8 +75,9 @@ right {
 right.standings {
 	width: 30%;
     margin-left: 20px;
-    margin-top: 5%;
+    margin-top: 2%;
     padding-left: 4%;
+	height: 75%;
     border-left: 1.5px solid #9b9b9b;
 }
 right.challenge {
@@ -84,6 +85,7 @@ right.challenge {
     margin-left: 20px;
     margin-top: 0%;
     padding-left: 4%;
+	height: 80%;
     border-left: 1.5px solid #9b9b9b;
 }
 

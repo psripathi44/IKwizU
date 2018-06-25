@@ -32,9 +32,10 @@
 	</nav>
 </header>
 <div id="main">
+<br/>
 <left class="standings">
-	<br/><span class="cfTitle"> Check your standings here! </span><br/>
-	<p>You can use this page to check your standings, basis the token.</p><br/>
+	<br/><span class="cfTitle"> Check token standings here! </span><br/>
+	<p>Input the token and see where you stand at.</p><br/>
 	<form method="POST" action="" enctype="multipart/form-data" style="width: 100%;">
 		<input type="number" name="inpToken" value="" placeholder="Enter token here.." class = "standingsFormTB" required/>
 		<input type="submit" name ="displayStandings" value="Display Standings" class="standingsFormButton"/>
@@ -84,14 +85,21 @@
 </left>
 <right class="standings">
 <?PHP
-print "Try these quizes if you havent't tried already. Sorted from Hardest to moderate.<br/><br/>";
+print "Here's top 10 challenges you can try. Sorted from Hardest to moderate.<br/><br/>";
 	try{
 		$i = 0;
 		$tokenLinksQueryStmt = "select distinct token from scorebytoken order by score DESC LIMIT 10";
 		$tokenLinksResults = @ mysqli_query ($connection, $tokenLinksQueryStmt);
 		while ($record = @ mysqli_fetch_array($tokenLinksResults)){
 			$i += 1;
-			print "<i class='fa fa-angle-double-right'></i><a class='others' href = 'http://localhost/IKwizU/challenge/".$record["token"]."'> Attempt challenge ". $record["token"]."</a><br/><br/>";
+			
+			$challengerStmt = "select name from tokens where id = {$record['token']}";
+			
+			$challenger = mysqli_query ($connection, $challengerStmt);
+			$challengerRec = mysqli_fetch_row($challenger);
+
+			print "<i class='fa fa-angle-double-right'></i><a class='others' href = 'http://localhost/IKwizU/challenge/".$record["token"]."'> Attempt challenge ". $record["token"]."</a><br/>";
+			print "&nbsp;&nbsp;&nbsp;Challenger: $challengerRec[0] <br/><br/>";
 		}
 	}
 	catch(Exception $e){

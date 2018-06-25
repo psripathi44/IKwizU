@@ -74,30 +74,45 @@ if(isset($_POST["proceed"])){
 	if(!isset($_SESSION['quizAttempted'])){	
 		$_SESSION['inpName'] = $_POST["inpName"];
 		$_SESSION['inpEmail'] = $_POST["inpEmail"];
-		$i = 0;
-		$quesArr = [];
-		$corrAns = [];
-		$quesStmt = "select qno, question, quesType, optA, optB, optC, optD, optKey from quizbytoken where token = $lToken order by qNo ASC";
-		$quesAnsQuery = @ mysqli_query ($connection, $quesStmt);
-		print "<form action='../results/' class ='quizFormBox' method='POST' name='quizForm' onSubmit='return quizFormValidation();'>";
-		while ($record = @ mysqli_fetch_array($quesAnsQuery)){
-			$i += 1;
-			print $record['qno'].". ".$record['question']."<br/><br/>";
-			if($record['quesType'] == "boolean")
-				$choicesArr = array($record['optA'], $record['optB']);
-			else
-				$choicesArr = array($record['optA'], $record['optB'], $record['optC'], $record['optD']);
-			
-			foreach($choicesArr as $key=>$choiceOptions){
-				print"<label class='container'>$choiceOptions
-						<input type='radio' name='Ques$i' id='$key' value='$choiceOptions'>
-						<span class='checkmark'></span>
-					  </label><br/>";
+		
+		$lEmail = $_POST["inpEmail"];
+		
+		$uniqueChallengerQuery = "select * from scorebytoken where token = $lToken and email = \"$lEmail\"";
+		$uniqueChallengerCheck = mysqli_query($connection, $uniqueChallengerQuery);
+		$uniqueChallengerRec = mysqli_fetch_row($uniqueChallengerCheck);
+		
+		if($uniqueChallengerRec[0] != null){
+			print "<br/>Hey it looks like this challenge was already attempted with the given email id, hence cannot proceed.<br/><br/>";
+			print "You will be redirected in 15 secs to the challenge page, try with different email address this time. "; 
+			print "<a style='color:#B60000' href='http://localhost/IKwizU/challenge/$lToken'>Click here</a> to redirect back manually.";
+			header( "refresh:15; url=http://localhost/IKwizU/challenge/$lToken" );
+			exit;
+		} else {
+			$i = 0;
+			$quesArr = [];
+			$corrAns = [];
+			$quesStmt = "select qno, question, quesType, optA, optB, optC, optD, optKey from quizbytoken where token = $lToken order by qNo ASC";
+			$quesAnsQuery = @ mysqli_query ($connection, $quesStmt);
+			print "<form action='../results/' class ='quizFormBox' method='POST' name='quizForm' onSubmit='return quizFormValidation();'>";
+			while ($record = @ mysqli_fetch_array($quesAnsQuery)){
+				$i += 1;
+				print $record['qno'].". ".$record['question']."<br/><br/>";
+				if($record['quesType'] == "boolean")
+					$choicesArr = array($record['optA'], $record['optB']);
+				else
+					$choicesArr = array($record['optA'], $record['optB'], $record['optC'], $record['optD']);
+				
+				foreach($choicesArr as $key=>$choiceOptions){
+					print"<label class='container'>$choiceOptions
+							<input type='radio' name='Ques$i' id='$key' value='$choiceOptions'>
+							<span class='checkmark'></span>
+						  </label><br/>";
+				}
+				print "<br/><br/>";
 			}
-			print "<br/><br/>";
+			print "<button class='formButton' name='submit' type='submit'>Submit</button></form>";
 		}
-		print "<button class='formButton' name='submit' type='submit'>Submit</button></form>";
-	}else{
+	} else{
 		$_SESSION['challenge'] = true;
 		$_SESSION['challToken'] = $_REQUEST['challengeToken'];
 		header("Location: http://localhost/IKwizU/results/");
@@ -119,7 +134,16 @@ if(isset($_POST["proceed"])){
 	</left>
 	<?PHP
 		print "<right class='challenge'><b> Challenger details:</b><hr/>";
-		print "<i class='fa fa-address-book'></i> Name: $challengerRec[0] <br/><i class='fa'>&#xf0c5;</i> Score: $challengerScoreRec[0]<br/><br/><br/>";
+		print "<i class='fa fa-address-book'></i> Name: $challengerRec[0] <br/>
+			   <i class='fa'>&#xf0c5;</i> Score: $challengerScoreRec[0]<br/>
+			   Difficulty: ";
+		
+		if($challengerScoreRec[0] >= 10)
+			print "Easy <br/><br/>";
+		else if($challengerScoreRec[0] >=7)
+			print "Medium <br/><br/>";
+		else
+			print "Hard <br/><br/>";
 		
 		print "<b>This token standings -</b><hr/>";
 		$i=0;
