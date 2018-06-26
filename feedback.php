@@ -14,7 +14,7 @@
 			<input type="checkbox" id="menu-toggle" />
 			<label for="menu-toggle" class="label-toggle"></label>
 			<ul>
-				<li><a href="#" >About</a></li>
+				<li><a href="../about/" >About</a></li>
 				<li><a href="../standings/" >Check Standings </a></li>
 				<li class="current"><a href="#">Feedback</a></li>
 				<li><a href="../analytics/">Analytics</a></li>

@@ -25,6 +25,13 @@ a.others{
 	font-weight: 500;
 }
 
+a.about{
+	text-decoration: none;
+	color: #B60000;
+	font-weight: 500;
+}
+
+a.about:hover,
 a.others:hover{
 	pointer: cursor;
 	font-weight: bold;
