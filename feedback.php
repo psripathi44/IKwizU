@@ -39,58 +39,58 @@
 	</div>
 	
 	<?php
-	if(isset($_POST["submit"]))
-	{
-		$name=$_POST['name'];
-		$email=$_POST['email'];
-		$message=$_POST['message'];
-		if (($name=="")||($email=="")||($message==""))
-			{
-				print '<br/><b style="color:#B60000">Exception:</b> ';
-				echo "<br/><b>All fields are required. Please fill all the fields.</b>";
-			}
-		else{		
-			/*Email code BEGIN*/
-			require 'PHPMailer/PHPMailerAutoload.php';
-			
-			$mail = new PHPMailer;
-			
-			$mail->isSMTP();									// Set mailer to use SMTP
-			$mail->Host = 'host name';                 			// Specify main and backup SMTP servers
-			$mail->SMTPAuth = true;								// Enable SMTP authentication
-			$mail->Username = 'user@domain.com';				// SMTP username
-			$mail->Password = 'passcode';						// SMTP password
-			$mail->SMTPSecure = 'true';							// Enable TLS encryption, `ssl` also accepted
-			$mail->Port = 587;									// TCP port to connect to
-			
-			$mail->setFrom('user@domain.com', $name);
-			$mail->addReplyTo($email, $name);
-			$mail->addAddress('prashu421@gmail.com');   		// Add a recipient
-			
-			$mail->isHTML(true);  // Set email format to HTML
+		if(isset($_POST["submit"]))
+		{
+			$name=$_POST['name'];
+			$email=$_POST['email'];
+			$message=$_POST['message'];
+			if (($name=="")||($email=="")||($message==""))
+				{
+					print '<br/><b style="color:#B60000">Exception:</b> ';
+					echo "<br/><b>All fields are required. Please fill all the fields.</b>";
+				}
+			else{		
+				/*Email code BEGIN*/
+				require 'PHPMailer/PHPMailerAutoload.php';
+				
+				$mail = new PHPMailer;
+				
+				$mail->isSMTP();									// Set mailer to use SMTP
+				$mail->Host = 'host name';                 			// Specify main and backup SMTP servers
+				$mail->SMTPAuth = true;								// Enable SMTP authentication
+				$mail->Username = 'user@domain.com';				// SMTP username
+				$mail->Password = 'passcode';						// SMTP password
+				$mail->SMTPSecure = 'true';							// Enable TLS encryption, `ssl` also accepted
+				$mail->Port = 587;									// TCP port to connect to
+				
+				$mail->setFrom('user@domain.com', $name);
+				$mail->addReplyTo($email, $name);
+				$mail->addAddress('prashu421@gmail.com');   		// Add a recipient
+				
+				$mail->isHTML(true);  // Set email format to HTML
 
-			$bodyContent = "<html>\n"; 
-			$bodyContent .= "<head>\n";
-			$bodyContent .= "<link href='https://fonts.googleapis.com/css?family=Tajawal' rel='stylesheet'>\n";
-			$bodyContent .= "</head>\n";  
-			$bodyContent .= "<body style=\"font-family: 'Tajawal', sans-serif; font-size: 1em; font-style: normal; font-weight: 300; color: #4B4B4B;\">\n";
-			$bodyContent .= "<br/> Hello Admin!<br/><br/> PFB feeback from the user - '$name'.<br/><br/>\n";
-			$bodyContent .= "Email ID: $email <br/> Message: $message <br/>\n";
-			$bodyContent .= "<br/> Regards, <br/> Team IKwizU.<br/><br/>\n";
-			$bodyContent .= "</body>\n"; 
-			$bodyContent .= "</html>\n"; 
-			
-			
-			$mail->Subject = 'Feedback - IKwizU';
-			$mail->Body    = $bodyContent;
-			
-			if(!$mail->send()) {
-				echo "<br/><span style='color:#B60000;'>Error: </span> <br/>Email could not be sent.";
-				echo '<br/>Mailer Error: ' . $mail->ErrorInfo;
-			} else {
-				echo "<br/><b>Your feedback has been recorded, thank you for helping us get better!</b>";
-			}
-		 /*Email code END*/
+				$bodyContent = "<html>\n"; 
+				$bodyContent .= "<head>\n";
+				$bodyContent .= "<link href='https://fonts.googleapis.com/css?family=Tajawal' rel='stylesheet'>\n";
+				$bodyContent .= "</head>\n";  
+				$bodyContent .= "<body style=\"font-family: 'Tajawal', sans-serif; font-size: 1em; font-style: normal; font-weight: 300; color: #4B4B4B;\">\n";
+				$bodyContent .= "<br/> Hello Admin!<br/><br/> PFB feeback from the user - '$name'.<br/><br/>\n";
+				$bodyContent .= "Email ID: $email <br/> Message: $message <br/>\n";
+				$bodyContent .= "<br/> Regards, <br/> Team IKwizU.<br/><br/>\n";
+				$bodyContent .= "</body>\n"; 
+				$bodyContent .= "</html>\n"; 
+				
+				
+				$mail->Subject = 'Feedback - IKwizU';
+				$mail->Body    = $bodyContent;
+				
+				if(!$mail->send()) {
+					echo "<br/><span style='color:#B60000;'>Error: </span> <br/>Email could not be sent.";
+					echo '<br/>Mailer Error: ' . $mail->ErrorInfo;
+				} else {
+					echo "<br/><b>Your feedback has been recorded, thank you for helping us get better!</b>";
+				}
+				/*Email code END*/
 			}
 		}  
 	?>

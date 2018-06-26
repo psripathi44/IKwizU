@@ -82,8 +82,8 @@ if(isset($_POST["proceed"])){
 	$inpCategory = $_POST["inpCategory"];
 	$inpDifficulty = $_POST["inpDifficulty"];
 	$inpQtype = $_POST["inpQtype"];
-	$inpName = $_POST["inpName"];
-	$inpEmail = $_POST["inpEmail"];
+	$inpName = mysqli_real_escape_string($connection, $_POST["inpName"]);
+	$inpEmail = mysqli_real_escape_string($connection, $_POST["inpEmail"]);
 	
 	$url = 'https://opentdb.com/api.php?amount=15'; //Set it to 2 for testing flexibility, Change this back to 15
 	

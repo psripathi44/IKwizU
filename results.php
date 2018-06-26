@@ -9,7 +9,7 @@
 <meta property="og:type"		content="website" />
 <meta property="og:title"		content="Hey IKwizU this challenge" />
 <meta property="og:description"	content="Do you think you can beat my score?" />
-<meta property="og:image"		content="http://static01.nyt.com/images/2015/02/19/arts/international/19iht-btnumbers19A/19iht-btnumbers19A-facebookJumbo-v2.jpg" />
+<meta property="og:image"		content="image here" />
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://fonts.googleapis.com/css?family=Tajawal" rel="stylesheet">
@@ -54,22 +54,20 @@ else{
 	if (!mysqli_select_db($connection, $databaseName)) //connecting to Database using "db.inc"
 		showerror($connection);
 
-	$inpName = $_SESSION['inpName'];
-	$inpEmail = $_SESSION['inpEmail'];
+	$inpName = mysqli_real_escape_string($connection, $_SESSION['inpName']);
+	$inpEmail = mysqli_real_escape_string($connection, $_SESSION['inpEmail']);
 
 	$quizAttemptCheckQ = mysqli_query($connection, "select * from scorebytoken where token = $lToken and email = \"$inpEmail\"");
 	$quizAttemptCheck = mysqli_fetch_row($quizAttemptCheckQ);
 	
-	print $quizAttemptCheck[0]."<br/";
-
-	if($quizAttemptCheck[0] == 0){
+	if($quizAttemptCheck[0] == 0){ //Checking if record exists, if yes,$quizAttemptCheck[0] returns the id of the user score inserted
 		if(isset($_POST["submit"])){
 			$quesArr = [];
 			$ansArr = [];
 			$userSelections = [];
 			$lScore = 0;
 			
-			/*The below for loop is the 20 $_POST[] statements which would fetch the answers selected for the quiz.*/
+			/*The below for loop is the 15 $_POST[] statements which would fetch the answers selected for the quiz.*/
 			for($i = 1 ; $i <= 15 ; $i++) {
 				$optName = 'Ques'.$i;
 				array_push($userSelections, $_POST["$optName"]);
@@ -97,8 +95,13 @@ else{
 
 			/*Storing scores of the user for dashboard*/
 			try{
-				$userAnsKeyForToken = implode(";", $userSelections); //Storing the answers selected by user as ";" seperated string
-				$insScoreQueryStmt = "INSERT INTO scorebytoken (token, name, email, score, thisUserAnsKeyForToken) VALUES ($lToken, '{$inpName}', '{$inpEmail}', '{$lScore}', '{$userAnsKeyForToken}')";
+				$userAnsKeyForToken = mysqli_real_escape_string($connection, implode(";", $userSelections)); //Storing the answers selected by user as ";" seperated string
+				$insScoreQueryStmt = "INSERT INTO scorebytoken (token, name, email, score, thisUserAnsKeyForToken) 
+									  VALUES 
+									  ($lToken, '{$inpName}', '{$inpEmail}', '{$lScore}', '{$userAnsKeyForToken}')";
+									  
+				//print $insScoreQueryStmt."<br/>";
+				
 				if(!@ mysqli_query ($connection, $insScoreQueryStmt)){
 					print '<br><b style="color:red">Exception:</b> '; //Exception raised if the token insertion fails.
 					throw new Exception(showerror($connection));
@@ -108,7 +111,7 @@ else{
 				print "Error occured while processing your request - ". $e;
 			}	
 			
-			print "<br/>Your score: $lScore<br/><br/>";
+			print "<br/>Your score: $lScore &nbsp;&nbsp;&nbsp;&nbsp; Token for standings reference: $lToken<br/><br/>";
 			print" <div class='a2a_kit a2a_kit_size_32 a2a_default_style' data-a2a-url='https://IKwizU.logngo.com/IKwizU/challenge/$lToken' data-a2a-title='IKwizU' data-a2a-description='This is a test'>
 			<a class='a2a_button_copy_link'></a>
 			<a class='a2a_button_twitter'></a>
@@ -146,7 +149,7 @@ else{
 		}
 		
 		try{
-			$userAnsQueryStmt = "select score, thisUserAnsKeyForToken from scorebytoken where token = $lToken";
+			$userAnsQueryStmt = "select score, thisUserAnsKeyForToken from scorebytoken where token = $lToken and email = \"$inpEmail\"";
 			$userAnsQuery = mysqli_query ($connection, $userAnsQueryStmt);
 			$userAnsRecord = mysqli_fetch_row($userAnsQuery);
 

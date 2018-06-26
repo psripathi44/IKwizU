@@ -39,17 +39,21 @@ if (!mysqli_select_db($connection, $databaseName)) //connecting to Database usin
 $_SESSION['challenge'] = true;
 $_SESSION['challToken'] = $_REQUEST['challengeToken'];
 $lToken = $_REQUEST['challengeToken'];
+$invalidToken = 0;
 
-$tokenDtlsStmt = "select name, email_id, created_date from tokens where id = $lToken";
-$challengerDetails = mysqli_query ($connection, $tokenDtlsStmt);
-$challengerRec = mysqli_fetch_row($challengerDetails);
+if(!is_numeric($lToken))
+	$invalidToken = 1;
+else {
+	$tokenDtlsStmt = "select name, email_id, created_date from tokens where id = $lToken";
+	$challengerDetails = mysqli_query ($connection, $tokenDtlsStmt);
+	$challengerRec = mysqli_fetch_row($challengerDetails);
 
-$challengerScoreStmt = "select score from scorebytoken where token = $lToken and email = \"$challengerRec[1]\"";
-$challengerScore = mysqli_query ($connection, $challengerScoreStmt);
-$challengerScoreRec = mysqli_fetch_row($challengerScore);
+	$challengerScoreStmt = "select score from scorebytoken where token = $lToken and email = \"$challengerRec[1]\"";
+	$challengerScore = mysqli_query ($connection, $challengerScoreStmt);
+	$challengerScoreRec = mysqli_fetch_row($challengerScore);
+}
 
-
-if($challengerRec[0] == null){
+if($invalidToken == 1 || $challengerRec[0] == null){
 	print "<br/><br/><left class='challenge'><span style='color: #B60000;'>Error: </span>Invalid URL. There exists no challenge with this token.</left>";
 	
 	print "<right class='challenge'>";
@@ -72,8 +76,8 @@ if($challengerRec[0] == null){
 
 if(isset($_POST["proceed"])){
 	if(!isset($_SESSION['quizAttempted'])){	
-		$_SESSION['inpName'] = $_POST["inpName"];
-		$_SESSION['inpEmail'] = $_POST["inpEmail"];
+		$_SESSION['inpName'] = mysqli_real_escape_string($connection, $_POST["inpName"]);
+		$_SESSION['inpEmail'] = mysqli_real_escape_string($connection, $_POST["inpEmail"]);
 		
 		$lEmail = $_POST["inpEmail"];
 		
@@ -84,7 +88,7 @@ if(isset($_POST["proceed"])){
 		if($uniqueChallengerRec[0] != null){
 			print "<br/>Hey it looks like this challenge was already attempted with the given email id, hence cannot proceed.<br/><br/>";
 			print "You will be redirected in 15 secs to the challenge page, try with different email address this time. "; 
-			print "<a style='color:#B60000' href='http://localhost/IKwizU/challenge/$lToken'>Click here</a> to redirect back manually.";
+			print "<a style='color:#B60000' href='http://localhost/IKwizU/challenge/$lToken'>Click here</a> to redirected manually.";
 			header( "refresh:15; url=http://localhost/IKwizU/challenge/$lToken" );
 			exit;
 		} else {
