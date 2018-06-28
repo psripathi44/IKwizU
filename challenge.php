@@ -137,7 +137,7 @@ if(isset($_POST["proceed"])){
 	</form>
 	</left>
 	<?PHP
-		print "<right class='challenge'><b> Challenger details:</b><hr/>";
+		print "<right class='challenge'><span style='color: steelblue'><b> Challenger details:</b> </span><hr/>";
 		print "<i class='fa fa-address-book'></i> Name: $challengerRec[0] <br/>
 			   <i class='fa'>&#xf0c5;</i> Score: $challengerScoreRec[0]<br/>
 			   Difficulty: ";
@@ -149,7 +149,7 @@ if(isset($_POST["proceed"])){
 		else
 			print "Hard <br/><br/>";
 		
-		print "<b>$lToken token standings -</b><hr/>";
+		print "<span style='color: steelblue'><b>$lToken token standings -</b></span><hr/>";
 		$i=0;
 		try{
 			$standingsQueryStmt = "select name, email, score, inserted_date from scorebytoken where token = $lToken order by score DESC, inserted_date ASC";
