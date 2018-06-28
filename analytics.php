@@ -25,8 +25,8 @@
 			<ul>
 				<li><a href="../about/" >About</a></li>
 				<li><a href="../standings/" >Check Standings </a></li>
+				<li class="current"><a href="#">Analyze</a></li>
 				<li><a href="../feedback/">Feedback</a></li>
-				<li class="current"><a href="#">Analytics</a></li>
 			</ul>
 	  </nav>
 	</nav>
@@ -57,15 +57,40 @@
 			showerror($connection);
 			
 		$lToken = $_POST['inpToken'];
+		$months = [];
+		$countByMonth = [];		
+		
+		$statsByTokenStmt = "select count(1), DATE_FORMAT(`inserted_date`, '%M') from scorebytoken where token = $lToken group by DATE_FORMAT(`inserted_date`, '%Y-%m-01')";
+		$statsByTokenResults = @ mysqli_query ($connection, $statsByTokenStmt);
+		while ($record = @ mysqli_fetch_array($statsByTokenResults)){
+			array_push($countByMonth, $record[0]);
+			array_push($months, $record[1]);
+		}
+			
 		
 		print "<script type='text/javascript'>	
 			Highcharts.chart('results', {
 			title: {
-				text: 'Analytics for Token $lToken by month'
+				text: 'Token $lToken stats by month'
 			},
 
 			subtitle: {
 				text: 'Source: IKwizU DB'
+			},
+			
+			xAxis: {
+				categories: [";
+				
+				
+				/*This code prints the dynamically fetched months array from the DB*/
+				$strToPrint = null;
+				for($i=0; $i<count($months); $i++)
+					$strToPrint .= "'$months[$i]',";
+
+				print substr($strToPrint, 0, -1);
+				
+				
+			print"]
 			},
 
 			yAxis: {
@@ -79,18 +104,18 @@
 				verticalAlign: 'middle'
 			},
 
-			plotOptions: {
-				series: {
-					label: {
-						connectorAllowed: true
-					},
-					pointStart: 2010
-				}
-			},
-
 			series: [{
 				name: 'Token $lToken',
-				data: [45,12,48,77,56,45,15,71,13,58]
+				data: [";
+				
+				/*This code prints the dynamically fetched months array from the DB*/
+				$strToPrint = null;
+				for($i=0; $i<count($countByMonth); $i++)
+					$strToPrint .= "$countByMonth[$i],";
+
+				print substr($strToPrint, 0, -1);
+				
+				print "]
 			}]
 
 		});

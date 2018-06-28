@@ -21,8 +21,8 @@
 			<ul>
 				<li><a href="../about/" >About</a></li>
 				<li><a href="../standings/" >Check Standings </a></li>
+				<li><a href="../analytics/">Analyze</a></li>
 				<li><a href="../feedback/">Feedback</a></li>
-				<li><a href="../analytics/">Analytics</a></li>
 			</ul>
 	  </nav>
 	</nav>
@@ -149,7 +149,7 @@ if(isset($_POST["proceed"])){
 		else
 			print "Hard <br/><br/>";
 		
-		print "<b>This token standings -</b><hr/>";
+		print "<b>$lToken token standings -</b><hr/>";
 		$i=0;
 		try{
 			$standingsQueryStmt = "select name, email, score, inserted_date from scorebytoken where token = $lToken order by score DESC, inserted_date ASC";

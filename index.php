@@ -21,8 +21,8 @@
 			<ul>
 				<li><a href="about/" >About</a></li>
 				<li><a href="standings/" >Check Standings </a></li>
+				<li><a href="analytics/">Analyze</a></li>
 				<li><a href="feedback/">Feedback</a></li>
-				<li><a href="analytics/">Analytics</a></li>
 			</ul>
 	  </nav>
 	</nav>
