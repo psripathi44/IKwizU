@@ -111,40 +111,41 @@ else{
 				print "Error occured while processing your request - ". $e;
 			}	
 			
-			print "<br/>Your score: $lScore &nbsp;&nbsp;&nbsp;&nbsp; Token for standings reference: $lToken<br/><br/>";
-			print "Challenge your friends, share by clicking on the buttons below - <br/>";
-			print "<div class='a2a_kit a2a_kit_size_32 a2a_default_style' data-a2a-url='https://IKwizU.logngo.com/IKwizU/challenge/$lToken' data-a2a-title='IKwizU' data-a2a-description='This is a test'>
-			<a class='a2a_button_copy_link'></a>
-			<a class='a2a_button_twitter'></a>
-			<a class='a2a_button_facebook'></a>
-			<a class='a2a_button_facebook_messenger'></a>
-			<a class='a2a_button_google_plus'></a>
-			<a class='a2a_button_reddit'></a>
-			<a class='a2a_button_linkedin'></a>
-			<a class='a2a_button_whatsapp'></a>
-			<a class='a2a_button_pinterest'></a>
-			</div><br/>
-			<script async src='https://static.addtoany.com/menu/page.js'></script>";
+			print "<br/><span style='font-size: 18px'>Hey $inpName, here's your result summary - </span><br/>";
+			print "<br/><table class ='quizStatsTable'>
+						<tr>
+							<td>Your score: $lScore </td> 
+							<td>Challenge your friends, share by clicking on the buttons below - </td>   
+						</tr>";
+			print "<tr>
+				<td>Token for your reference: $lToken</td>
+				<td>
+				<div class='a2a_kit a2a_kit_size_32 a2a_default_style' data-a2a-url='https://IKwizU.logngo.com/IKwizU/challenge/$lToken' data-a2a-title='IKwizU' data-a2a-description='This is a test'>
+				<a class='a2a_button_copy_link'></a>
+				<a class='a2a_button_twitter'></a>
+				<a class='a2a_button_facebook'></a>
+				<a class='a2a_button_facebook_messenger'></a>
+				<a class='a2a_button_google_plus'></a>
+				<a class='a2a_button_reddit'></a>
+				<a class='a2a_button_linkedin'></a>
+				<a class='a2a_button_whatsapp'></a>
+				<a class='a2a_button_pinterest'></a>
+				</div>
+			<script async src='https://static.addtoany.com/menu/page.js'></script></td></tr></table>";
 			
-			/*for($i=0; $i<15; $i++){
-				print ($i+1).".".$quesArr[$i]." <br/>" ;
-				print "Your answer: ".$userSelections[$i];
-				print "&nbsp; &nbsp; Correct answer: ".$ansArr[$i]."<br/><br/>";
-			}*/
-			
-			print "<br/><br/><table class='resultsTable'>";
+			print "<br/><br/><br/><table class='resultsTable'>";
 			for($i=0; $i<15; $i++){
 				if($userSelections[$i] == $ansArr[$i]){
 					print "<tr><td><i class='fa fa-check-circle-o' style='font-size:24px;color:#63ce4f'></i></td> <td>". ($i+1).".&nbsp;&nbsp;".$quesArr[$i]." </td></tr>" ;
-					print "<tr><td></td><td>Your answer: ".$userSelections[$i]."<br/><hr/><br/></td></tr>";
+					print "<tr><td></td><td><span style='color:#63ce4f;'>Your answer: </span>".$userSelections[$i]."<br/><hr/><br/></td></tr>";
 				}
 				else{
 					print "<tr><td><i class='fa fa-times-circle' style='font-size:24px;color:#B60000'></i></td> <td>". ($i+1).".&nbsp;&nbsp;".$quesArr[$i]." </td></tr>" ;
-					print "<tr><td></td> <td>Your answer: ".$userSelections[$i];
-					print "&nbsp; &nbsp; Correct answer: ".$ansArr[$i]."<br/><hr/><br/></td></tr>";
+					print "<tr><td></td> <td><span style='color:#B60000'>Your answer: </span>".$userSelections[$i];
+					print "&nbsp; &nbsp; <span style='color:#63ce4f'>Correct answer: </span>".$ansArr[$i]."<br/><hr/><br/></td></tr>";
 				}
 			}
-			print "</table>";
+			print "</table><br/><br/><br/>";
 		}
 	} else {
 		$quesArr = [];
@@ -176,7 +177,7 @@ else{
 			print "Error occured while processing your request - ". $e;
 		}
 		
-		print "<br/><span style='font-size: 18px'>Hey $inpName, here's your result summary.</span><br/>";
+		print "<br/><span style='font-size: 18px'>Hey $inpName, here's your result summary - </span><br/>";
 		print "<br/><table class ='quizStatsTable'>
 					<tr>
 						<td>Your score: $lScore </td> 
